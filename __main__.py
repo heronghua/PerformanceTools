@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
    print("[main] +")
    # DB factory
-   factory= Factory("SQLiteDBHelper")
+   factory= Factory("ExcelHelper")
    trace_parser = trace_parser("testFile")
 
    while trace_parser.hasNext():

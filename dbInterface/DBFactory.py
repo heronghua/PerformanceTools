@@ -2,11 +2,13 @@
 #!/usr/bin/env python
 from SQLiteDBHelper import *;
 from MySQLDBHelper import *;
+from ExcelHelper import *;
 
 def Factory(dbName = "SQLiteDBHelper"):
 
     dataBases = {"SQLiteDBHelper":SQLiteDBHelper,
-            "MySQLDBHelper":MySQLDBHelper
+            "MySQLDBHelper":MySQLDBHelper,
+            "ExcelHelper":ExcelHelper
             }
 
     return dataBases[dbName]()

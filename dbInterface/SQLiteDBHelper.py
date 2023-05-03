@@ -3,14 +3,18 @@
 #!/usr/bin/env python
 import sqlite3
 
-class SQLiteDBHelper:
+from dbInterface.BaseDBHelper import BaseDBHelper
+DB_FILE_SUFFIX="db"
+
+class SQLiteDBHelper(BaseDBHelper):
     def __init__(self):
         print("[SQLiteDBHelper.__init__]+")
+        super(SQLiteDBHelper, self).__init__(DB_FILE_SUFFIX)
         #do create table
-        self.conn=sqlite3.connect("output/anylyze.db") 
+        self.conn=sqlite3.connect(self.outputFilePath) 
         self.cursor=self.conn.cursor()
 
-        table = """CREATE TABLE IF NOT EXISTS PERF_T(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tag VARCHAR(255), startTime NUMERIC, endTime NUMERIC);"""
+        table = """CREATE TABLE IF NOT EXISTS {}(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tag VARCHAR(255), startTime NUMERIC, endTime NUMERIC);""".format(self.TABLE_NAME)
         self.cursor.execute(table)
         self.conn.commit()
         print("[SQLiteDBHelper.__init__]-")
