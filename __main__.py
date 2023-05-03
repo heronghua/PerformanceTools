@@ -8,10 +8,12 @@
 #!/usr/bin/env python
 from dbInterface import Factory
 from trace_parser import trace_parser
+import LogHelper as Log
+
 
 if __name__ == "__main__":
 
-   print("[main] +")
+   Log.i("+")
    # DB factory
    factory= Factory("ExcelHelper")
    trace_parser = trace_parser("testFile")
@@ -24,6 +26,6 @@ if __name__ == "__main__":
        pass
        
    factory.release()
-   print("[main] -")
+   Log.i("-")
    pass
 

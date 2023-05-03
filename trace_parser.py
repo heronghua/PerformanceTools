@@ -1,12 +1,14 @@
+#coding=utf-8
 #!/usr/bin/env python
+import LogHelper as Log
 
 class trace_parser:
     
     def __init__(self, traceFilePath):
-        print('trace_parser.__init__ + traceFilePath = {}'.format(traceFilePath))
+        Log.d('trace_parser.__init__ + traceFilePath = {}'.format(traceFilePath))
         self.traceFile = open(traceFilePath)
         self.fileHasNextLine = True
-        print('trace_parser.__init__ -')
+        Log.d('trace_parser.__init__ -')
         pass
 
     
@@ -14,7 +16,7 @@ class trace_parser:
         line = self.traceFile.readline()
         self.fileHasNextLine=(line!='')
         if self.fileHasNextLine:
-            print(line)
+            Log.d(line)
             return TraceRecord(line.replace('\n',''),123.232,232.312)
         else:
             return None
