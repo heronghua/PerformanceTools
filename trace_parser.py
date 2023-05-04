@@ -5,10 +5,9 @@ import LogHelper as Log
 class trace_parser:
     
     def __init__(self, traceFilePath):
-        Log.d('trace_parser.__init__ + traceFilePath = {}'.format(traceFilePath))
+        Log.d('traceFilePath = {}'.format(traceFilePath))
         self.traceFile = open(traceFilePath)
         self.fileHasNextLine = True
-        Log.d('trace_parser.__init__ -')
         pass
 
     

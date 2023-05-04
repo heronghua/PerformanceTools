@@ -3,6 +3,7 @@
 import sys
 import os
 import datetime
+import io
 
 LOG_FILE_PATH="output/log"
 DATE_FORMAT="%Y-%m-%d %H:%M:%S"
@@ -26,11 +27,15 @@ def findCaller(func):
         func(*args)
     return wrapper
 
+log = io.open(os.path.join(LOG_FILE_PATH),'a',encoding='utf8',)
+
 @findCaller
 def i(msg,caller=''):
     timeStamp=datetime.datetime.now().strftime(DATE_FORMAT)
     if LOG_LEVEL <= LOG_LEVEL_I:
-        print("{}\tINFO\t{: ^30}\t{}".format(timeStamp,caller,msg))
+        msg="{}\tINFO\t{: ^30}\t{}".format(timeStamp,caller,msg)
+        print(msg)
+        log.write(u'{}\n'.format(msg))
         pass
     pass
 
@@ -38,7 +43,9 @@ def i(msg,caller=''):
 def d(msg,caller=''):
     timeStamp=datetime.datetime.now().strftime(DATE_FORMAT)
     if LOG_LEVEL <= LOG_LEVEL_D:
-        print("{}\tDEBUG\t{: ^30}\t{}".format(timeStamp,caller,msg))
+        msg="{}\tDEBUG\t{: ^30}\t{}".format(timeStamp,caller,msg)
+        print(msg)
+        log.write(u'{}\n'.format(msg))
         pass
     pass
 
@@ -46,7 +53,9 @@ def d(msg,caller=''):
 def e(msg,caller=''):
     timeStamp=datetime.datetime.now().strftime(DATE_FORMAT)
     if LOG_LEVEL <= LOG_LEVEL_E:
-        print("{}\tERROR\t{: ^30}\t{}".format(timeStamp,caller,msg))
+        msg="{}\tERROR\t{: ^30}\t{}".format(timeStamp,caller,msg)
+        print(msg)
+        log.write(u'{}\n'.format(msg))
         pass
     pass
 
@@ -54,7 +63,9 @@ def e(msg,caller=''):
 def w(msg,caller=''):
     timeStamp=datetime.datetime.now().strftime(DATE_FORMAT)
     if LOG_LEVEL <= LOG_LEVEL_W:
-        print("{}\tWARNING\t{: ^30}\t{}".format(timeStamp,caller,msg))
+        msg="{}\tWARNING\t{: ^30}\t{}".format(timeStamp,caller,msg)
+        print(msg)
+        log.write(u'{}\n'.format(msg))
         pass
     pass
 
@@ -62,6 +73,8 @@ def w(msg,caller=''):
 def v(msg,caller=''):
     timeStamp=datetime.datetime.now().strftime(DATE_FORMAT)
     if LOG_LEVEL <= LOG_LEVEL_V:
-        print("{}\tVERBOSE\t{: ^30}\t{}".format(timeStamp,caller,msg))
+        msg="{}\tVERBOSE\t{: ^30}\t{}".format(timeStamp,caller,msg)
+        print(msg)
+        log.write(u'{}\n'.format(msg))
         pass
     pass
